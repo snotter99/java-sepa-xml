@@ -6,7 +6,7 @@ import java.util.Date;
 public class SEPAFormatDate {
 
     public static String formatDate(Date date) {
-        return new SimpleDateFormat("yyyymmddhhmmss").format(date);
+        return new SimpleDateFormat("yyyyMMddhhmmss").format(date);
     }
 
     public static String formatDateShort(Date date) {
@@ -14,6 +14,7 @@ public class SEPAFormatDate {
     }
 
     public static String formatDateLong(Date date) {
-        return new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.000'Z'").format(date);
+        // return new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.000'Z'").format(date);
+        return new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss").format(date);
     }
 }
