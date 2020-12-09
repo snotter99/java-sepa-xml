@@ -1,5 +1,6 @@
 package org.java.sepaxml;
 
+import org.java.sepaxml.format.SEPAFormatDate;
 import org.java.sepaxml.xml.XMLNode;
 import java.util.Date;
 import java.util.List;
@@ -26,8 +27,8 @@ public class SEPACreditTransfer extends SEPA {
             XMLNode nodeCdtTrfTxInf = this.nodePmtInf.append("CdtTrfTxInf");
 
             XMLNode nodePmtId = nodeCdtTrfTxInf.append("PmtId");
-            nodePmtId.append("InstrId").value("NOTPROVIDED");
-            nodePmtId.append("EndToEndId").value("NOTPROVIDED");
+            nodePmtId.append("InstrId").value("MP" + SEPAFormatDate.formatDate(executionDate) + "0001");
+            nodePmtId.append("EndToEndId").value("MP" + SEPAFormatDate.formatDate(executionDate) + "0001");
 
             // String valueOfBigDec=String.valueOf(transaction.getValue());
             nodeCdtTrfTxInf.append("Amt").
