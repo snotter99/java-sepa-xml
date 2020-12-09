@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class SEPA {
     public enum PaymentMethods {
 
-        Cheque("CHK"), TransferAdvice("TRF"),  CreditTransfer("TRA");
+        Cheque("CHK"), TransferAdvice("TRF"), CreditTransfer("TRA");
 
         private String code;
 
@@ -29,7 +29,8 @@ public abstract class SEPA {
     protected XMLNode document;
     protected XMLNode nodePmtInf;
 
-    protected PaymentMethods paymentMethod = PaymentMethods.CreditTransfer;
+    // protected PaymentMethods paymentMethod = PaymentMethods.CreditTransfer;
+    protected PaymentMethods paymentMethod = PaymentMethods.TransferAdvice;
 
     public SEPA(SEPABankAccount reciver, List<SEPATransaction> transactions) {
         this(reciver, transactions, new Date());
@@ -49,19 +50,24 @@ public abstract class SEPA {
 
         XMLNode nodeCstmrDrctDbtInitn = this.document.append("CstmrCdtTrfInitn");
         XMLNode nodeGrpHdr = nodeCstmrDrctDbtInitn.append("GrpHdr");
-
-        nodeGrpHdr.append("MsgId").value(this.reciver.getBIC() + "00" + SEPAFormatDate.formatDate(executionDate));
+        // nodeGrpHdr.append("MsgId").value(this.reciver.getBIC() + "00" + SEPAFormatDate.formatDate(executionDate));
+        nodeGrpHdr.append("MsgId").value(SEPAFormatDate.formatDate(executionDate));
         nodeGrpHdr.append("CreDtTm").value(SEPAFormatDate.formatDateLong(executionDate));
         nodeGrpHdr.append("NbOfTxs").value(this.transactions.size());
-        nodeGrpHdr.append("CtrlSum").value(this.getTransactionVolume().doubleValue());
-        nodeGrpHdr.append("InitgPty").append("Nm").value(this.reciver.getName());
+        //nodeGrpHdr.append("CtrlSum").value(this.getTransactionVolume().doubleValue());
+        nodeGrpHdr.append("CtrlSum").value(this.getTransactionVolume().toString());
+
+        XMLNode nodeInitgPty = nodeGrpHdr.append("InitgPty");
+        nodeInitgPty.append("Nm").value(this.reciver.getName());
+        nodeInitgPty.append("Id").append("OrgId").append("Othr").append("Id").value("TVA");
 
         this.nodePmtInf = nodeCstmrDrctDbtInitn.append("PmtInf");
-        this.nodePmtInf.append("PmtInfId").value("PMT-ID0-" + SEPAFormatDate.formatDate(executionDate));
+        this.nodePmtInf.append("PmtInfId").value(SEPAFormatDate.formatDate(executionDate));
         this.nodePmtInf.append("PmtMtd").value(paymentMethod.code); // For PAIN 001 (Überweisung) there are three Payment Methods: CHK (Cheque), TRF (TransferAdvice), TRA (CreditTransfer)
         this.nodePmtInf.append("BtchBookg").value("true");
         this.nodePmtInf.append("NbOfTxs").value(this.transactions.size());
-        this.nodePmtInf.append("CtrlSum").value(this.getTransactionVolume().doubleValue());
+        // this.nodePmtInf.append("CtrlSum").value(this.getTransactionVolume().doubleValue());
+        this.nodePmtInf.append("CtrlSum").value(this.getTransactionVolume().toString());
 
         XMLNode nodePmtTpInf = this.nodePmtInf.append("PmtTpInf");
         nodePmtTpInf.append("SvcLvl").append("Cd").value("SEPA");
@@ -69,8 +75,15 @@ public abstract class SEPA {
         // nodePmtTpInf.append("SeqTp").append("Cd").value("FRST"); // only necessary for PAIN 008 (Lastschrift)
 
         this.nodePmtInf.append("ReqdExctnDt").value(SEPAFormatDate.formatDateShort(executionDate));
-        this.nodePmtInf.append(this.getType() + "tr")
-                .append("Nm").value(this.reciver.getName());
+        XMLNode nodeTr = this.nodePmtInf.append(this.getType() + "tr");
+        nodeTr.append("Nm").value(this.reciver.getName());
+        XMLNode nodePsltAdr = nodeTr.append("PstlAdr");
+        nodePsltAdr.append("Ctry").value("ES");
+        String[] adrLine = {"LINEA DE DIRECCION 1", "LINEA DE DIRECCION 1", "LINEA DE DIRECCION 1"};
+        for (String s : adrLine) {
+            nodePsltAdr.append("AdrLine").value(s);
+        }
+        nodeTr.append("Id").append("OrgId").append("Othr").append("Id").value("TVA");
 
         this.nodePmtInf.append(this.getType() + "trAcct")
                 .append("Id")
@@ -78,10 +91,9 @@ public abstract class SEPA {
                 .value(this.reciver.getIBAN());
 
         if (this.reciver.getBIC() != null) {
-            this.nodePmtInf.append(this.getType() + "trAgt")
-                    .append("FinInstnId")
-                    .append("BIC")
-                    .value(this.reciver.getBIC());
+            XMLNode nodeFinInstnId =  this.nodePmtInf.append(this.getType() + "trAgt").append("FinInstnId");
+            nodeFinInstnId.append("BIC").value(this.reciver.getBIC());
+            nodeFinInstnId.append("PsltAdr").append("Ctry").value("ES");
         }
 
         this.nodePmtInf.append("ChrgBr").value("SLEV");
