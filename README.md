@@ -285,25 +285,31 @@ final SEPA sepa=new SEPACreditTransfer(sender,transactions);
 #### XML File Result for SEPA Credit Transfer
 
 ```xml
-
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd">
     <CstmrCdtTrfInitn>
         <GrpHdr>
-            <MsgId>DEUTDEBBXXX0020205009125053</MsgId>
-            <CreDtTm>2020-12-09T12:50:53.000Z</CreDtTm>
+            <MsgId>20201209045004</MsgId>
+            <CreDtTm>2020-12-09T04:50:04</CreDtTm>
             <NbOfTxs>1</NbOfTxs>
-            <CtrlSum>1.854408214E7</CtrlSum>
+            <CtrlSum>18544082.14</CtrlSum>
             <InitgPty>
                 <Nm>Joe Doe</Nm>
+                <Id>
+                    <OrgId>
+                        <Othr>
+                            <Id>TVA</Id>
+                        </Othr>
+                    </OrgId>
+                </Id>
             </InitgPty>
         </GrpHdr>
         <PmtInf>
-            <PmtInfId>PMT-ID0-20205009125053</PmtInfId>
-            <PmtMtd>TRA</PmtMtd>
+            <PmtInfId>20201209045004</PmtInfId>
+            <PmtMtd>TRF</PmtMtd>
             <BtchBookg>true</BtchBookg>
             <NbOfTxs>1</NbOfTxs>
-            <CtrlSum>1.854408214E7</CtrlSum>
+            <CtrlSum>18544082.14</CtrlSum>
             <PmtTpInf>
                 <SvcLvl>
                     <Cd>SEPA</Cd>
@@ -312,6 +318,19 @@ final SEPA sepa=new SEPACreditTransfer(sender,transactions);
             <ReqdExctnDt>2020-12-09</ReqdExctnDt>
             <Dbtr>
                 <Nm>Joe Doe</Nm>
+                <PstlAdr>
+                    <Ctry>ES</Ctry>
+                    <AdrLine>LINEA DE DIRECCION 1</AdrLine>
+                    <AdrLine>LINEA DE DIRECCION 1</AdrLine>
+                    <AdrLine>LINEA DE DIRECCION 1</AdrLine>
+                </PstlAdr>
+                <Id>
+                    <OrgId>
+                        <Othr>
+                            <Id>TVA</Id>
+                        </Othr>
+                    </OrgId>
+                </Id>
             </Dbtr>
             <DbtrAcct>
                 <Id>
@@ -321,13 +340,16 @@ final SEPA sepa=new SEPACreditTransfer(sender,transactions);
             <DbtrAgt>
                 <FinInstnId>
                     <BIC>DEUTDEBBXXX</BIC>
+                    <PsltAdr>
+                        <Ctry>ES</Ctry>
+                    </PsltAdr>
                 </FinInstnId>
             </DbtrAgt>
             <ChrgBr>SLEV</ChrgBr>
             <CdtTrfTxInf>
                 <PmtId>
-                    <InstrId>NOTPROVIDED</InstrId>
-                    <EndToEndId>NOTPROVIDED</EndToEndId>
+                    <InstrId>MP202012090450040001</InstrId>
+                    <EndToEndId>MP202012090450040001</EndToEndId>
                 </PmtId>
                 <Amt>
                     <InstdAmt Ccy="EUR">18544082.14</InstdAmt>
