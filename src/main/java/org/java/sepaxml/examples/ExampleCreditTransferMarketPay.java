@@ -17,39 +17,17 @@ public class ExampleCreditTransferMarketPay {
                 "Joe Doe"
         );
 
+
         final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
             add(new SEPATransaction(
                             new SEPABankAccount(
-                                    "DE05500105173195282731",
-                                    "VBRSDE33347",
-                                    "Peter Parker"
+                                    "ES8600491500052610115791",
+                                    "BSCHESMMXXX",
+                                    "C.C. CARREFOUR S.A."
                             ),
-                            new BigDecimal(2000.20d),
-                            "Salary PP 2018-07",
-                            SEPATransaction.Currency.EUR
-                    )
-            );
-
-            add(new SEPATransaction(
-                            new SEPABankAccount(
-                                    "DK5250511963137134",
-                                    "UINVDEFFXXX",
-                                    "Carl White"
-                            ),
-                            new BigDecimal(1000.00d),
-                            "Salary CW 2015-12",
-                            SEPATransaction.Currency.EUR
-                    )
-            );
-
-            add(new SEPATransaction(
-                            new SEPABankAccount(
-                                    "CZ7627005991764514418145",
-                                    "SWBSDESSXXX",
-                                    "Frank Black"
-                            ),
-                            new BigDecimal(5000.00d),
-                            "Salary FB 2017-05",
+                            // new BigDecimal(18544082.14d),
+                            BigDecimal.valueOf(18544082.14),
+                            "07.12.2020 BRUTO: 18580731,32 COM: 36649,18",
                             SEPATransaction.Currency.EUR
                     )
             );
