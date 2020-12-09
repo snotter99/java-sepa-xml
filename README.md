@@ -86,15 +86,15 @@ public class ExampleDirectDebit {
 
 
 ```java
-public static void main(String[] args) {
-final SEPABankAccount sender = new SEPABankAccount(
+public static void main(String[] args){
+final SEPABankAccount sender=new SEPABankAccount(
         "DE89370400440532013000",
         "DEUTDEBBXXX",
         "Joe Doe"
         );
 
 
-final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
+final List<SEPATransaction> transactions=new ArrayList<SEPATransaction>(){{
         add(new SEPATransaction(
         new SEPABankAccount(
         "ES8600491500052610115791",
@@ -109,9 +109,9 @@ final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
         );
         }};
 
-final SEPA sepa = new SEPACreditTransfer(sender, transactions);
+final SEPA sepa=new SEPACreditTransfer(sender,transactions);
         sepa.write(System.out);
-
+        }
 ```
 
 #### XML File Result for SEPA Direct Debit
