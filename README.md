@@ -319,114 +319,80 @@ public class ExampleCreditTransfer {
 
 ```xml
 
-<?xml version="1.0" encoding="UTF-8"?>
-<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.002.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.008.002.02 pain.008.002.02.xsd">
-   <CstmrDrctDbtInitn>
-      <GrpHdr>
-         <MsgId>DEUTDEBBXXX0020183502113507</MsgId>
-         <CreDtTm>2018-07-02T11:35:07.000Z</CreDtTm>
-         <NbOfTxs>3</NbOfTxs>
-         <InitgPty>
-            <Nm>Joe Doe</Nm>
-         </InitgPty>
-      </GrpHdr>
-      <PmtInf>
-         <PmtInfId>PMT-ID0-20183502113507</PmtInfId>
-         <PmtMtd>DD</PmtMtd>
-         <BtchBookg>true</BtchBookg>
-         <NbOfTxs>3</NbOfTxs>
-         <CtrlSum>8000.2</CtrlSum>
-         <PmtTpInf>
-            <SvcLvl>
-               <Cd>SEPA</Cd>
-            </SvcLvl>
-            <LclInstrm>
-               <Cd>CORE</Cd>
-            </LclInstrm>
-            <SeqTp>
-               <Cd>FRST</Cd>
-            </SeqTp>
-         </PmtTpInf>
-         <ReqdColltnDt>2018-07-02</ReqdColltnDt>
-         <Dbtr>
-            <Nm>Joe Doe</Nm>
-         </Dbtr>
-         <DbtrAcct>
-            <Id>
-               <IBAN>DE89370400440532013000</IBAN>
-            </Id>
-         </DbtrAcct>
-         <DbtrAgt>
-            <FinInstnId>
-               <BIC>DEUTDEBBXXX</BIC>
-            </FinInstnId>
-         </DbtrAgt>
-         <ChrgBr>SLEV</ChrgBr>
-         <CdtTrfTxInf>
-            <PmtId>
-               <EndToEndId>NOTPROVIDED</EndToEndId>
-            </PmtId>
-            <Amt>
-               <InstdAmt Ccy="EUR">2000.2</InstdAmt>
-            </Amt>
-            <CdtrAgt>
-               <FinInstnId>
-                  <BIC>VBRSDE33347</BIC>
-               </FinInstnId>
-            </CdtrAgt>
-            <Cdtr>
-               <Nm>Peter Parker</Nm>
-            </Cdtr>
-            <CdtrAcct>
-               <Id>
-                  <IBAN>DE05500105173195282731</IBAN>
-               </Id>
-            </CdtrAcct>
-         </CdtTrfTxInf>
-         <CdtTrfTxInf>
-            <PmtId>
-               <EndToEndId>NOTPROVIDED</EndToEndId>
-            </PmtId>
-            <Amt>
-               <InstdAmt Ccy="EUR">1000.0</InstdAmt>
-            </Amt>
-            <CdtrAgt>
-               <FinInstnId>
-                  <BIC>UINVDEFFXXX</BIC>
-               </FinInstnId>
-            </CdtrAgt>
-            <Cdtr>
-               <Nm>Carl White</Nm>
-            </Cdtr>
-            <CdtrAcct>
-               <Id>
-                  <IBAN>DK5250511963137134</IBAN>
-               </Id>
-            </CdtrAcct>
-         </CdtTrfTxInf>
-         <CdtTrfTxInf>
-            <PmtId>
-               <EndToEndId>NOTPROVIDED</EndToEndId>
-            </PmtId>
-            <Amt>
-               <InstdAmt Ccy="EUR">5000.0</InstdAmt>
-            </Amt>
-            <CdtrAgt>
-               <FinInstnId>
-                  <BIC>SWBSDESSXXX</BIC>
-               </FinInstnId>
-            </CdtrAgt>
-            <Cdtr>
-               <Nm>Frank Black</Nm>
-            </Cdtr>
-            <CdtrAcct>
-               <Id>
-                  <IBAN>CZ7627005991764514418145</IBAN>
-               </Id>
-            </CdtrAcct>
-         </CdtTrfTxInf>
-      </PmtInf>
-   </CstmrDrctDbtInitn>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd">
+    <CstmrCdtTrfInitn>
+        <GrpHdr>
+            <MsgId>DEUTDEBBXXX0020205009125053</MsgId>
+            <CreDtTm>2020-12-09T12:50:53.000Z</CreDtTm>
+            <NbOfTxs>1</NbOfTxs>
+            <CtrlSum>1.854408214E7</CtrlSum>
+            <InitgPty>
+                <Nm>Joe Doe</Nm>
+            </InitgPty>
+        </GrpHdr>
+        <PmtInf>
+            <PmtInfId>PMT-ID0-20205009125053</PmtInfId>
+            <PmtMtd>TRA</PmtMtd>
+            <BtchBookg>true</BtchBookg>
+            <NbOfTxs>1</NbOfTxs>
+            <CtrlSum>1.854408214E7</CtrlSum>
+            <PmtTpInf>
+                <SvcLvl>
+                    <Cd>SEPA</Cd>
+                </SvcLvl>
+            </PmtTpInf>
+            <ReqdExctnDt>2020-12-09</ReqdExctnDt>
+            <Dbtr>
+                <Nm>Joe Doe</Nm>
+            </Dbtr>
+            <DbtrAcct>
+                <Id>
+                    <IBAN>DE89370400440532013000</IBAN>
+                </Id>
+            </DbtrAcct>
+            <DbtrAgt>
+                <FinInstnId>
+                    <BIC>DEUTDEBBXXX</BIC>
+                </FinInstnId>
+            </DbtrAgt>
+            <ChrgBr>SLEV</ChrgBr>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <InstrId>NOTPROVIDED</InstrId>
+                    <EndToEndId>NOTPROVIDED</EndToEndId>
+                </PmtId>
+                <Amt>
+                    <InstdAmt Ccy="EUR">18544082.14</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <BIC>BSCHESMMXXX</BIC>
+                        <PstlAdr>
+                            <Ctry>ES</Ctry>
+                        </PstlAdr>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Nm>C.C. CARREFOUR S.A.</Nm>
+                    <PstlAdr>
+                        <StrtNm>STREET NAME</StrtNm>
+                        <PstCd>POST CODE</PstCd>
+                        <TwnNm>TOWN NAME</TwnNm>
+                        <Ctry>ES</Ctry>
+                    </PstlAdr>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <IBAN>ES8600491500052610115791</IBAN>
+                    </Id>
+                </CdtrAcct>
+                <RmtInf>
+                    <Ustrd>07.12.2020 BRUTO: 18580731,32 COM: 36649,18</Ustrd>
+                </RmtInf>
+            </CdtTrfTxInf>
+        </PmtInf>
+    </CstmrCdtTrfInitn>
 </Document>
 
 ```
