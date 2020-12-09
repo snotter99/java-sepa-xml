@@ -110,7 +110,6 @@ final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
         }};
 
 final SEPA sepa = new SEPACreditTransfer(sender, transactions);
-        System.out.println("Market Pay");
         sepa.write(System.out);
 
 ```
