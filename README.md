@@ -83,36 +83,51 @@ public class ExampleDirectDebit {
 ```
 
 #### SEPA Credit Transfer
-
-
-```java
-public static void main(String[] args){
-final SEPABankAccount sender=new SEPABankAccount(
-        "DE89370400440532013000",
-        "DEUTDEBBXXX",
-        "Joe Doe"
+public class ExampleCreditTransferMarketPay {
+   public static void main(String[] args) {
+        final SEPABankAccount sender = new SEPABankAccount(
+               "DE89370400440532013000",
+               "DEUTDEBBXXX",
+               "MARKET PAY"
         );
 
+        final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
+            try {
+                Date dt;
+                dt = new SimpleDateFormat("yyyy-MM-dd").parse("2020-12-07");
 
-final List<SEPATransaction> transactions=new ArrayList<SEPATransaction>(){{
-        add(new SEPATransaction(
-        new SEPABankAccount(
-        "ES8600491500052610115791",
-        "BSCHESMMXXX",
-        "C.C. CARREFOUR S.A."
-        ),
-        // new BigDecimal(18544082.14d),
-        BigDecimal.valueOf(18544082.14),
-        "07.12.2020 BRUTO: 18580731,32 COM: 36649,18",
-        SEPATransaction.Currency.EUR
-        )
-        );
+                add(new SEPATransaction(
+                        new SEPABankAccount(
+                                "ES8600491500052610115791",
+                                "BSCHESMMXXX",
+                                "C.C. CARREFOUR S.A."
+                        ),
+                        // new BigDecimal(18544082.14d),
+                        BigDecimal.valueOf(18544082.14),
+                        "07.12.2020 BRUTO: 18580731,32 COM: 36649,18",
+                        dt,
+                        SEPATransaction.Currency.EUR)
+                );
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }};
 
-final SEPA sepa=new SEPACreditTransfer(sender,transactions);
-        sepa.write(System.out);
+
+        // final SEPA sepa = new SEPACreditTransfer(sender, transactions);
+        try {
+            final SEPA sepa = new SEPACreditTransfer(sender, transactions, new SimpleDateFormat("yyyy-MM-ddhh:mm:ss").parse("2020-12-0708:21:05"));
+            sepa.write(System.out);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-```
+
+    }
+}
+
+```java
+
 
 #### XML File Result for SEPA Direct Debit
 
@@ -289,25 +304,25 @@ final SEPA sepa=new SEPACreditTransfer(sender,transactions);
 <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd">
     <CstmrCdtTrfInitn>
         <GrpHdr>
-            <MsgId>20201209045004</MsgId>
-            <CreDtTm>2020-12-09T04:50:04</CreDtTm>
+            <MsgId>20201207082105</MsgId>
+            <CreDtTm>2020-12-07T08:21:05</CreDtTm>
             <NbOfTxs>1</NbOfTxs>
             <CtrlSum>18544082.14</CtrlSum>
             <InitgPty>
-                <Nm>Joe Doe</Nm>
+                <Nm>MARKET PAY</Nm>
                 <Id>
                     <OrgId>
                         <Othr>
-                            <Id>TVA</Id>
+                            <Id>Not provided</Id>
                         </Othr>
                     </OrgId>
                 </Id>
             </InitgPty>
         </GrpHdr>
         <PmtInf>
-            <PmtInfId>20201209045004</PmtInfId>
+            <PmtInfId>20201207082105</PmtInfId>
             <PmtMtd>TRF</PmtMtd>
-            <BtchBookg>true</BtchBookg>
+            <BtchBookg>false</BtchBookg>
             <NbOfTxs>1</NbOfTxs>
             <CtrlSum>18544082.14</CtrlSum>
             <PmtTpInf>
@@ -315,9 +330,9 @@ final SEPA sepa=new SEPACreditTransfer(sender,transactions);
                     <Cd>SEPA</Cd>
                 </SvcLvl>
             </PmtTpInf>
-            <ReqdExctnDt>2020-12-09</ReqdExctnDt>
+            <ReqdExctnDt>2020-12-07</ReqdExctnDt>
             <Dbtr>
-                <Nm>Joe Doe</Nm>
+                <Nm>MARKET PAY</Nm>
                 <PstlAdr>
                     <Ctry>ES</Ctry>
                     <AdrLine>LINEA DE DIRECCION 1</AdrLine>
@@ -327,7 +342,7 @@ final SEPA sepa=new SEPACreditTransfer(sender,transactions);
                 <Id>
                     <OrgId>
                         <Othr>
-                            <Id>TVA</Id>
+                            <Id>To be provided</Id>
                         </Othr>
                     </OrgId>
                 </Id>
@@ -336,6 +351,7 @@ final SEPA sepa=new SEPACreditTransfer(sender,transactions);
                 <Id>
                     <IBAN>DE89370400440532013000</IBAN>
                 </Id>
+                <Ccy>EUR</Ccy>
             </DbtrAcct>
             <DbtrAgt>
                 <FinInstnId>
@@ -348,8 +364,8 @@ final SEPA sepa=new SEPACreditTransfer(sender,transactions);
             <ChrgBr>SLEV</ChrgBr>
             <CdtTrfTxInf>
                 <PmtId>
-                    <InstrId>MP202012090450040001</InstrId>
-                    <EndToEndId>MP202012090450040001</EndToEndId>
+                    <InstrId>MP202012070821050001</InstrId>
+                    <EndToEndId>MP202012070821050001</EndToEndId>
                 </PmtId>
                 <Amt>
                     <InstdAmt Ccy="EUR">18544082.14</InstdAmt>
