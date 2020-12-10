@@ -65,6 +65,10 @@ public class SEPATransaction {
 		this(bankAccount, value, subject, new Date(), null, null, currency, null);
 	}
 
+	public SEPATransaction(SEPABankAccount bankAccount, BigDecimal value, String subject, Date date, Currency currency) {
+		this(bankAccount, value, subject, date, null, null, currency, null);
+	}
+
 	public String getId() {
 		return id;
 	}
