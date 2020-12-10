@@ -131,7 +131,7 @@ public class ExampleCreditTransferMarketPay {
 }
 
 
-```java
+```
 
 
 #### XML File Result for SEPA Direct Debit
