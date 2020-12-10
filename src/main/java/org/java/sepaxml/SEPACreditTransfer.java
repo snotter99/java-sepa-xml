@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class SEPACreditTransfer extends SEPA {
+    private static int countTransaction = 0;
 
     public SEPACreditTransfer(SEPABankAccount sender, List<SEPATransaction> transactions) {
         this(sender, transactions, new Date());
@@ -27,8 +28,9 @@ public class SEPACreditTransfer extends SEPA {
             XMLNode nodeCdtTrfTxInf = this.nodePmtInf.append("CdtTrfTxInf");
 
             XMLNode nodePmtId = nodeCdtTrfTxInf.append("PmtId");
-            nodePmtId.append("InstrId").value("MP" + SEPAFormatDate.formatDate(executionDate) + "0001");
-            nodePmtId.append("EndToEndId").value("MP" + SEPAFormatDate.formatDate(executionDate) + "0001");
+            countTransaction++;
+            nodePmtId.append("InstrId").value("MP" + SEPAFormatDate.formatDate(executionDate) + String.format("%04d", countTransaction));
+            nodePmtId.append("EndToEndId").value("MP" + SEPAFormatDate.formatDate(executionDate) + String.format("%04d", countTransaction));
 
             // String valueOfBigDec=String.valueOf(transaction.getValue());
             nodeCdtTrfTxInf.append("Amt").
