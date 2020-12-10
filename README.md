@@ -86,7 +86,7 @@ public class ExampleDirectDebit {
 
 ```java
 public class ExampleCreditTransferMarketPay {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
          final SEPABankAccount sender = new SEPABankAccount(
             "DE89370400440532013000",
             "DEUTDEBBXXX",
@@ -94,7 +94,7 @@ public class ExampleCreditTransferMarketPay {
          );
 
     
-	     final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
+         final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
             try {
                 Date dt;
                 dt = new SimpleDateFormat("yyyy-MM-dd").parse("2020-12-07");
