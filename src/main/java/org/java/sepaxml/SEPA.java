@@ -59,12 +59,12 @@ public abstract class SEPA {
 
         XMLNode nodeInitgPty = nodeGrpHdr.append("InitgPty");
         nodeInitgPty.append("Nm").value(this.reciver.getName());
-        nodeInitgPty.append("Id").append("OrgId").append("Othr").append("Id").value("TVA");
+        nodeInitgPty.append("Id").append("OrgId").append("Othr").append("Id").value("Not provided");
 
         this.nodePmtInf = nodeCstmrDrctDbtInitn.append("PmtInf");
         this.nodePmtInf.append("PmtInfId").value(SEPAFormatDate.formatDate(executionDate));
         this.nodePmtInf.append("PmtMtd").value(paymentMethod.code); // For PAIN 001 (Überweisung) there are three Payment Methods: CHK (Cheque), TRF (TransferAdvice), TRA (CreditTransfer)
-        this.nodePmtInf.append("BtchBookg").value("true");
+        this.nodePmtInf.append("BtchBookg").value("false");
         this.nodePmtInf.append("NbOfTxs").value(this.transactions.size());
         // this.nodePmtInf.append("CtrlSum").value(this.getTransactionVolume().doubleValue());
         this.nodePmtInf.append("CtrlSum").value(this.getTransactionVolume().toString());
@@ -83,12 +83,13 @@ public abstract class SEPA {
         for (String s : adrLine) {
             nodePsltAdr.append("AdrLine").value(s);
         }
-        nodeTr.append("Id").append("OrgId").append("Othr").append("Id").value("TVA");
+        nodeTr.append("Id").append("OrgId").append("Othr").append("Id").value("To be provided");
 
-        this.nodePmtInf.append(this.getType() + "trAcct")
-                .append("Id")
-                .append("IBAN")
-                .value(this.reciver.getIBAN());
+        XMLNode nodeTrAcct = this.nodePmtInf.append(this.getType() + "trAcct");
+        nodeTrAcct.append("Id")
+                  .append("IBAN")
+                  .value(this.reciver.getIBAN());
+        nodeTrAcct.append("Ccy").value("EUR");
 
         if (this.reciver.getBIC() != null) {
             XMLNode nodeFinInstnId =  this.nodePmtInf.append(this.getType() + "trAgt").append("FinInstnId");
