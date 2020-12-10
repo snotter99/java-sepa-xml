@@ -38,6 +38,30 @@ public class ExampleCreditTransferMarketPay {
                         SEPATransaction.Currency.EUR)
                 );
 
+                add(new SEPATransaction(
+                        new SEPABankAccount(
+                                "ES4300491500012110399145",
+                                "BSCHESMMXXX",
+                                "GRUPO SUPECO MAXOR, S.L."
+                        ),
+                        BigDecimal.valueOf(2145885.79),
+                        "07.12.2020 BRUTO: 2150185,23 COM: 4299,44",
+                        dt,
+                        SEPATransaction.Currency.EUR)
+                );
+
+                add(new SEPATransaction(
+                        new SEPABankAccount(
+                                "ES1000491500082310399137",
+                                "BSCHESMMXXX",
+                                "SUPERMERCADOS CHAMPION S.A"
+                        ),
+                        BigDecimal.valueOf(951937.27),
+                        "07.12.2020 BRUTO: 953921,58 COM: 1984,31",
+                        dt,
+                        SEPATransaction.Currency.EUR)
+                );
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
