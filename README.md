@@ -83,15 +83,18 @@ public class ExampleDirectDebit {
 ```
 
 #### SEPA Credit Transfer
-public class ExampleCreditTransferMarketPay {
-   public static void main(String[] args) {
-        final SEPABankAccount sender = new SEPABankAccount(
-               "DE89370400440532013000",
-               "DEUTDEBBXXX",
-               "MARKET PAY"
-        );
 
-        final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
+```java
+public class ExampleCreditTransferMarketPay {
+	public static void main(String[] args) {
+         final SEPABankAccount sender = new SEPABankAccount(
+            "DE89370400440532013000",
+            "DEUTDEBBXXX",
+            "MARKET PAY"
+         );
+
+    
+	     final List<SEPATransaction> transactions = new ArrayList<SEPATransaction>() {{
             try {
                 Date dt;
                 dt = new SimpleDateFormat("yyyy-MM-dd").parse("2020-12-07");
@@ -118,6 +121,7 @@ public class ExampleCreditTransferMarketPay {
         // final SEPA sepa = new SEPACreditTransfer(sender, transactions);
         try {
             final SEPA sepa = new SEPACreditTransfer(sender, transactions, new SimpleDateFormat("yyyy-MM-ddhh:mm:ss").parse("2020-12-0708:21:05"));
+            System.out.println("Market Pay");
             sepa.write(System.out);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -125,6 +129,7 @@ public class ExampleCreditTransferMarketPay {
 
     }
 }
+
 
 ```java
 
