@@ -112,6 +112,30 @@ public class ExampleCreditTransferMarketPay {
                         SEPATransaction.Currency.EUR)
                 );
 
+                add(new SEPATransaction(
+                        new SEPABankAccount(
+                                "ES4300491500012110399145",
+                                "BSCHESMMXXX",
+                                "GRUPO SUPECO MAXOR, S.L."
+                        ),
+                        BigDecimal.valueOf(2145885.79),
+                        "07.12.2020 BRUTO: 2150185,23 COM: 4299,44",
+                        dt,
+                        SEPATransaction.Currency.EUR)
+                );
+
+                add(new SEPATransaction(
+                        new SEPABankAccount(
+                                "ES1000491500082310399137",
+                                "BSCHESMMXXX",
+                                "SUPERMERCADOS CHAMPION S.A"
+                        ),
+                        BigDecimal.valueOf(951937.27),
+                        "07.12.2020 BRUTO: 953921,58 COM: 1984,31",
+                        dt,
+                        SEPATransaction.Currency.EUR)
+                );
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -311,8 +335,8 @@ public class ExampleCreditTransferMarketPay {
         <GrpHdr>
             <MsgId>20201207082105</MsgId>
             <CreDtTm>2020-12-07T08:21:05</CreDtTm>
-            <NbOfTxs>1</NbOfTxs>
-            <CtrlSum>18544082.14</CtrlSum>
+            <NbOfTxs>3</NbOfTxs>
+            <CtrlSum>21641905.20</CtrlSum>
             <InitgPty>
                 <Nm>MARKET PAY</Nm>
                 <Id>
@@ -328,11 +352,12 @@ public class ExampleCreditTransferMarketPay {
             <PmtInfId>20201207082105</PmtInfId>
             <PmtMtd>TRF</PmtMtd>
             <BtchBookg>false</BtchBookg>
-            <NbOfTxs>1</NbOfTxs>
-            <CtrlSum>18544082.14</CtrlSum>
+            <NbOfTxs>3</NbOfTxs>
+            <CtrlSum>21641905.20</CtrlSum>
             <PmtTpInf>
                 <SvcLvl>
                     <Cd>SEPA</Cd>
+                    <Cd>SDCL</Cd>
                 </SvcLvl>
             </PmtTpInf>
             <ReqdExctnDt>2020-12-07</ReqdExctnDt>
@@ -401,9 +426,79 @@ public class ExampleCreditTransferMarketPay {
                     <Ustrd>07.12.2020 BRUTO: 18580731,32 COM: 36649,18</Ustrd>
                 </RmtInf>
             </CdtTrfTxInf>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <InstrId>MP202012070821050002</InstrId>
+                    <EndToEndId>MP202012070821050002</EndToEndId>
+                </PmtId>
+                <Amt>
+                    <InstdAmt Ccy="EUR">2145885.79</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <BIC>BSCHESMMXXX</BIC>
+                        <PstlAdr>
+                            <Ctry>ES</Ctry>
+                        </PstlAdr>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Nm>GRUPO SUPECO MAXOR, S.L.</Nm>
+                    <PstlAdr>
+                        <StrtNm>STREET NAME</StrtNm>
+                        <PstCd>POST CODE</PstCd>
+                        <TwnNm>TOWN NAME</TwnNm>
+                        <Ctry>ES</Ctry>
+                    </PstlAdr>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <IBAN>ES4300491500012110399145</IBAN>
+                    </Id>
+                </CdtrAcct>
+                <RmtInf>
+                    <Ustrd>07.12.2020 BRUTO: 2150185,23 COM: 4299,44</Ustrd>
+                </RmtInf>
+            </CdtTrfTxInf>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <InstrId>MP202012070821050003</InstrId>
+                    <EndToEndId>MP202012070821050003</EndToEndId>
+                </PmtId>
+                <Amt>
+                    <InstdAmt Ccy="EUR">951937.27</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <BIC>BSCHESMMXXX</BIC>
+                        <PstlAdr>
+                            <Ctry>ES</Ctry>
+                        </PstlAdr>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Nm>SUPERMERCADOS CHAMPION S.A</Nm>
+                    <PstlAdr>
+                        <StrtNm>STREET NAME</StrtNm>
+                        <PstCd>POST CODE</PstCd>
+                        <TwnNm>TOWN NAME</TwnNm>
+                        <Ctry>ES</Ctry>
+                    </PstlAdr>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <IBAN>ES1000491500082310399137</IBAN>
+                    </Id>
+                </CdtrAcct>
+                <RmtInf>
+                    <Ustrd>07.12.2020 BRUTO: 953921,58 COM: 1984,31</Ustrd>
+                </RmtInf>
+            </CdtTrfTxInf>
         </PmtInf>
     </CstmrCdtTrfInitn>
 </Document>
+
+
 
 ```
 
